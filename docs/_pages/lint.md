@@ -284,3 +284,10 @@ table.insert(t, 0, 42) -- table.insert uses index 0 but arrays are 1-based; did 
 
 table.insert(t, #t+1, 42) -- table.insert will append the value to the table; consider removing the second argument for efficiency
 ```
+## DuplicateCondition (24)
+
+When checking multiple conditions via `and/or` or `if/elseif`, a copy & paste error may result in checking the same condition redundantly. This almost always indicates a bug, so a warning is emitted when use of a duplicate condition is detected.
+
+```lua
+assert(self._adorns[normID1] and self._adorns[normID1]) -- Condition has already been checked on column 8
+```
